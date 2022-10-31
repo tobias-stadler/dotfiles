@@ -15,7 +15,7 @@ vim.g.mapleader = " "
 vim.cmd[[colorscheme tokyonight]]
 
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "cpp", "cuda", "rust", "lua" },
+    ensure_installed = { "c", "cpp", "cuda", "rust", "lua","python"},
     sync_install = false,
     auto_install = false,
 
@@ -47,7 +47,8 @@ local on_attach = function(client, bufnr)
         -- print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     -- end, bufopts)
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<leader>ls', "<cmd>:ClangdSwitchSourceHeader<cr>", bufopts)
     -- vim.keymap.set('n', '<leader>', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
@@ -103,6 +104,7 @@ end, {silent = true})
 local tel = require 'telescope.builtin'
 
 vim.keymap.set('n', '<leader>ff', tel.find_files, {})
+vim.keymap.set('n', '<leader>fp', tel.git_files, {})
 vim.keymap.set('n', '<leader>fg', tel.live_grep, {})
 vim.keymap.set('n', '<leader>fb', tel.buffers, {})
 vim.keymap.set('n', '<leader>fr', tel.lsp_references, {})
@@ -118,6 +120,11 @@ require('lspconfig')['clangd'].setup{
     capabilities = capabilities,
 }
 require('lspconfig')['rust_analyzer'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
+require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
