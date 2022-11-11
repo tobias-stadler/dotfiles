@@ -15,7 +15,7 @@ vim.g.mapleader = " "
 vim.cmd[[colorscheme tokyonight]]
 
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "cpp", "cuda", "rust", "lua","python"},
+    ensure_installed = { "c", "cpp", "cuda", "rust", "lua", "python"},
     sync_install = false,
     auto_install = false,
 

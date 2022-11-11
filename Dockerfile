@@ -5,5 +5,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\
 && make stow.tmux stow.nvim stow.zsh && sed -i 's#powerlevel10k/powerlevel10k#robbyrussell#' ~/.zshrc && usermod --shell /bin/zsh root
 RUN dnf update -y && dnf install -y qemu-system-riscv qemu-system-aarch64 qemu-system-x86 qemu-user qemu-img gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu
+RUN dnf update -y && dnf module install -y nodejs:18/development && npm install -g pyright
 ENV TERM "xterm-256color"
 ENTRYPOINT ["/bin/zsh"]
