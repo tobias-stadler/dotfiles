@@ -16,6 +16,8 @@ vim.opt.mouse = "nv"
 
 vim.g.mapleader = " "
 
+require('plugins')
+
 vim.cmd[[colorscheme tokyonight]]
 
 require'nvim-treesitter.configs'.setup {
@@ -115,6 +117,8 @@ vim.keymap.set('n', '<leader>fr', tel.lsp_references, {})
 vim.keymap.set('n', '<leader>fi', tel.lsp_incoming_calls, {})
 
 vim.keymap.set('n', '<leader>s', vim.cmd.write, {})
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities();
 

@@ -4,7 +4,10 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
 
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
   use 'neovim/nvim-lspconfig'
 
   use 'L3MON4D3/LuaSnip'
@@ -13,6 +16,8 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/nvim-cmp'
+
+  use "rafamadriz/friendly-snippets"
 
   use {
       'nvim-telescope/telescope.nvim', tag = '0.1.0',

@@ -13,10 +13,13 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && usermod --shell /bin/zsh root
 ENV TERM "xterm-256color"
 RUN pacman -Syu --noconfirm\
-    && pacman -S verilator
+    && pacman -S --noconfirm verilator
 RUN npm install -g pyright\
     && pip install requests
-RUN cd opt\
+RUN cd /usr/local/src\
     && wget -O verible.tar.gz https://github.com/chipsalliance/verible/releases/download/v0.0-2548-g5e00342c/verible-v0.0-2548-g5e00342c-Ubuntu-22.04-jammy-x86_64.tar.gz\
-    && tar -xzf verible.tar.gz
+    && tar -xzf verible.tar.gz\
+    && cd verible*/\
+    && install bin/* /usr/local/bin\
+    && install share/* /usr/local/share
 ENTRYPOINT ["/bin/zsh"]
