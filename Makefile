@@ -1,4 +1,4 @@
-.PHONY: unstow stow.all stow.desktop podman
+.PHONY: unstow stow.all stow.desktop stow.container
 
 packagedirs := nvim tmux tmpfiles zsh
 

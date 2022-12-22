@@ -1,5 +1,5 @@
 FROM archlinux
-RUN pacman -Syu --noconfirm && pacman -S git curl wget tar tmux neovim make gcc cmake stow zsh zsh-completions clang gdb bear ninja python python-pip nodejs npm
+RUN pacman -Syu --noconfirm && pacman -S --noconfirm git curl wget tar tmux neovim make gcc cmake stow zsh zsh-completions clang gdb bear ninja python python-pip nodejs npm
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended\
     && git clone https://github.com/tobias-stadler/dotfiles ~/dotfiles\
     && rm ~/.zshrc\
