@@ -9,6 +9,10 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.opt.mouse = "nv"
 
 vim.g.mapleader = " "
 
@@ -125,6 +129,11 @@ require('lspconfig')['rust_analyzer'].setup{
     capabilities = capabilities,
 }
 require('lspconfig')['pyright'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
+require('lspconfig')['verible'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,

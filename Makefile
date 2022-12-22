@@ -1,15 +1,16 @@
-.PHONY: unstow stow.all desktop podman
+.PHONY: unstow stow.all stow.desktop podman
+
+packagedirs := nvim tmux tmpfiles zsh
 
 stow.%:
 	stow -v -R $* 
 
 stow.all:
-	stow -v -R */
+	stow -v -R $(packagedirs)
 
 unstow:
 	stow -v -D */
 
-desktop: stow.nvim stow.tmux stow.tmpfiles stow.zsh
+stow.desktop: stow.nvim stow.tmux stow.tmpfiles stow.zsh
 
-podman:
-	podman build -t tost .
+stow.container: stow.nvim stow.tmux stow.zsh

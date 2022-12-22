@@ -1,0 +1,22 @@
+FROM archlinux
+RUN pacman -Syu --noconfirm && pacman -S git curl wget tar tmux neovim make gcc cmake stow zsh zsh-completions clang gdb bear ninja python python-pip nodejs npm
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended\
+    && git clone https://github.com/tobias-stadler/dotfiles ~/dotfiles\
+    && rm ~/.zshrc\
+    && cd ~/dotfiles\
+    && git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim\
+    && nvim --headless -c "source nvim/.config/nvim/lua/plugins.lua" -c 'autocmd User PackerComplete quitall' -c 'PackerSync'\
+    && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting\
+    && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\
+    && make stow.container\
+    && sed -i 's#powerlevel10k/powerlevel10k#robbyrussell#' ~/.zshrc\
+    && usermod --shell /bin/zsh root
+ENV TERM "xterm-256color"
+RUN pacman -Syu --noconfirm\
+    && pacman -S verilator
+RUN npm install -g pyright\
+    && pip install requests
+RUN cd opt\
+    && wget -O verible.tar.gz https://github.com/chipsalliance/verible/releases/download/v0.0-2548-g5e00342c/verible-v0.0-2548-g5e00342c-Ubuntu-22.04-jammy-x86_64.tar.gz\
+    && tar -xzf verible.tar.gz
+ENTRYPOINT ["/bin/zsh"]
