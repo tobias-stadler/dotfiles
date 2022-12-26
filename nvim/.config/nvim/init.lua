@@ -78,6 +78,7 @@ ls.config.set_config {
 }
 
 local cmp = require'cmp'
+cmp.register_source('tags', require('tags'))
 
 cmp.setup({
     snippet = {
@@ -90,6 +91,8 @@ cmp.setup({
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-k>'] = cmp.mapping.confirm({ select = true }),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
@@ -99,6 +102,17 @@ cmp.setup({
     }, {
         { name = 'buffer' },
     })
+})
+
+cmp.setup.filetype('systemverilog', {
+    sources =
+    {
+        --{ name = 'nvim_lsp' },
+        { name = 'tags' },
+        { name = 'luasnip' },
+    }, {
+        { name = 'buffer' },
+    }
 })
 
 vim.keymap.set({ "i", "s" }, "<C-k>", function()

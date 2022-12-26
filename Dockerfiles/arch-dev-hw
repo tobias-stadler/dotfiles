@@ -13,7 +13,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && usermod --shell /bin/zsh root
 ENV TERM "xterm-256color"
 RUN pacman -Syu --noconfirm\
-    && pacman -S --noconfirm verilator
+    && pacman -S --noconfirm verilator ctags
 RUN npm install -g pyright\
     && pip install requests
 RUN cd /usr/local/src\
