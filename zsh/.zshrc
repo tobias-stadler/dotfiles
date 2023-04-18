@@ -122,8 +122,8 @@ alias dllvm-as=${DLLVM_PATH}llvm-as
 alias dllvm-dis=${DLLVM_PATH}llvm-dis
 alias dopt=${DLLVM_PATH}opt
 alias uni="cd /data/onedrive/Uni/WS2223"
-alias podfed="podman run -it --rm -v .:/app/:Z fed-dev"
-alias podhw="podman run -it --rm -v .:/app/:Z arch-dev-hw"
+alias podfed="podman run -it --rm -v .:/app/:Z --tmpfs /ram fed-dev"
+alias podhw="podman run -it --rm -v .:/app/:Z --tmpfs /ram arch-dev-hw"
 
 export PATH=/usr/local/cuda-11.7/bin:$PATH
 

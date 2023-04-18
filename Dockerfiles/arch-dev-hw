@@ -10,7 +10,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\
     && make stow.container\
     && sed -i 's#powerlevel10k/powerlevel10k#robbyrussell#' ~/.zshrc\
-    && usermod --shell /bin/zsh root
+    && usermod --shell /bin/zsh root && echo "Init tools done"
 ENV TERM "xterm-256color"
 RUN pacman -Syu --noconfirm\
     && pacman -S --noconfirm verilator ctags
