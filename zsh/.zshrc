@@ -124,7 +124,7 @@ alias dopt=${DLLVM_PATH}opt
 alias uni="cd /data/onedrive/Uni/SS23"
 alias podfed="podman run -it --rm -v .:/app/:Z --log-driver=none --tmpfs /ram fed37-dev"
 alias podhw="podman run -it --rm -v .:/app/:Z --log-driver=none --tmpfs /ram arch-dev-hw"
-alias podumbra="podman run -it --rm -v .:$PWD:Z --log-driver=none --tmpfs /ram fed37-umbra"
+alias podumbra="podman run -it --rm -v .:\$PWD:Z --log-driver=none --tmpfs /ram --cap-add SYS_PTRACE fed37-umbra"
 
 export PATH=/usr/local/cuda-11.7/bin:$PATH
 
