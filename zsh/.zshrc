@@ -113,7 +113,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim"
 
-export DLLVM_PATH="/data/llvm/llvm-project/build/bin/"
+export DLLVM_PATH="/data/hiwi/llvm-build/bin/"
 
 alias dclang=${DLLVM_PATH}clang
 alias dlli=${DLLVM_PATH}lli
