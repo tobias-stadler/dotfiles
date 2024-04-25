@@ -1,38 +1,46 @@
-vim.cmd [[packadd packer.nvim]]
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function () 
+      local configs = require("nvim-treesitter.configs")
 
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+      configs.setup({
+          ensure_installed = { "c", "cpp", "cuda", "rust", "lua", "python"},
+          sync_install = false,
+          auto_install = false,
 
-  use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
+          highlight = {
+              enable = true,
+              additional_vim_regex_highlighting = false,
+          },
+        })
+    end
+  },
+  'nvim-treesitter/nvim-treesitter-context',
+
+  'neovim/nvim-lspconfig',
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/nvim-cmp',
+
+  'tpope/vim-fugitive',
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
   }
-  use 'nvim-treesitter/nvim-treesitter-context'
-  use 'neovim/nvim-lspconfig'
-
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/nvim-cmp'
-
-  use 'tpope/vim-fugitive'
-
-  use {
-      'folke/trouble.nvim',
-      config = function()
-          require("trouble").setup {
-              icons = false,
-          }
-      end
-  }
-  use "rafamadriz/friendly-snippets"
-
-  use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.0',
-      requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
-  use 'folke/tokyonight.nvim'
-end)
+}

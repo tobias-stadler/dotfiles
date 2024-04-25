@@ -16,20 +16,21 @@ vim.opt.mouse = "nv"
 
 vim.g.mapleader = " "
 
-require('plugins')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup("plugins")
 
 vim.cmd[[colorscheme tokyonight]]
-
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "cpp", "cuda", "rust", "lua", "python"},
-    sync_install = false,
-    auto_install = false,
-
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
-}
 
 require'treesitter-context'.setup{
   enable = true,
@@ -61,7 +62,7 @@ local on_attach = function(client, bufnr)
     if client.server_capabilities.definitionProvider then
         vim.keymap.set('n', '<leader>d', vim.lsp.buf.definition, bufopts)
     end
-    -- vim.keymap.set('n', '<leader>i', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<leader>i', vim.lsp.buf.implementation, bufopts)
     -- vim.keymap.set('n', '<leader>t', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, bufopts)
    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -154,6 +155,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local capabilities = require('cmp_nvim_lsp').default_capabilities();
 
 require('lspconfig')['clangd'].setup{
+    cmd = {"clangd", "--completion-style=detailed"},
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,

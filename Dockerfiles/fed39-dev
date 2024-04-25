@@ -1,0 +1,6 @@
+FROM fedora:39
+RUN dnf update -y && dnf install -y git make
+RUN git clone https://github.com/tobias-stadler/dotfiles ~/dotfiles
+RUN cd ~/dotfiles && make fedora && make no-powerlevel && usermod --shell /bin/zsh root
+ENV TERM "xterm-256color"
+ENTRYPOINT ["/bin/zsh"]

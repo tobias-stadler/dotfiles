@@ -112,6 +112,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim="nvim"
+export EDITOR="nvim"
 
 export DLLVM_PATH="/data/hiwi/llvm-build/bin/"
 
@@ -121,15 +122,10 @@ alias dllc=${DLLVM_PATH}llc
 alias dllvm-as=${DLLVM_PATH}llvm-as
 alias dllvm-dis=${DLLVM_PATH}llvm-dis
 alias dopt=${DLLVM_PATH}opt
-alias uni="cd /data/onedrive/Uni/SS23"
+alias uni="cd /data/onedrive/Uni/SS24"
 alias hiwi="cd /data/hiwi"
-alias podfed="podman run -it --rm -v .:/app/:Z --log-driver=none --tmpfs /ram fed38-dev"
-alias podfedpriv="podman run -it --rm -v .:/app/:Z --log-driver=none --privileged --tmpfs /ram fed38-dev"
+alias podfed="podman run -it --rm -v .:/app/:Z --log-driver=none --tmpfs /ram fed39-dev"
 alias podhw="podman run -it --rm -v .:/app/:Z --log-driver=none --tmpfs /ram arch-dev-hw"
-alias podumbra="podman run -it --rm -v .:\$PWD:Z --log-driver=none --tmpfs /ram --cap-add SYS_PTRACE fed37-umbra"
-alias poduwu="podman run -it --rm -v .:\$PWD:Z --log-driver=none --tmpfs /ram --cap-add SYS_PTRACE ubuntu-dev"
-
-export PATH=/usr/local/cuda-11.7/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
