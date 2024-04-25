@@ -14,11 +14,11 @@ unstow:
 pod.%:
 	podman build -t $* -f Dockerfiles/$* .
 
-stow.container: stow.nvim stow.tmux stow.zsh
-stow.desktop: stow.container stow.tmpfiles
 
+stow-container: stow.nvim stow.tmux stow.zsh
+stow-desktop: stow-container
 
-install.omz:
+omz:
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	git clone https://github.com/zsh-users/zsh-autosuggestions $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -33,9 +33,9 @@ mac:
 fedora:
 	dnf update -y
 	dnf install -y git curl wget tar tmux neovim make gcc cmake stow zsh clang clang-tools-extra gdb bear ninja-build python3 python3-pip libasan ripgrep perf llvm llvm-devel
-	make install.omz
+	make omz
 	rm ~/.zshrc
-	make stow.container
+	make stow-container
 
 fedora-umbra:
 	dnf install -y boost-devel libpq-devel libasan re2-devel bison-devel bison liburing-devel zlib-devel libzstd-devel jemalloc-devel
