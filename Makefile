@@ -46,5 +46,5 @@ ubuntu:
 	apt install -y git wget curl tar tmux neovim make gcc cmake stow zsh clang clang-format gdb bear ninja-build python3 python3-pip ripgrep gdb-multiarch gcc-aarch64-linux-gnu qemu-user-static binutils-aarch64-linux-gnu
 	make install.omz
 	rm ~/.zshrc
-	make stow.container
+	make stow-container
 
