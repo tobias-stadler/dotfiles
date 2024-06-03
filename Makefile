@@ -28,7 +28,7 @@ no-powerlevel:
 	sed -i 's#powerlevel10k/powerlevel10k#robbyrussell#' ~/.zshrc
 
 mac:
-	brew install neovim tmux
+	brew install neovim tmux stow
 
 fedora:
 	dnf update -y
