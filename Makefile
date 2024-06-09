@@ -19,16 +19,17 @@ stow-container: stow.nvim stow.tmux stow.zsh
 stow-desktop: stow-container
 
 omz:
-	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-	git clone https://github.com/zsh-users/zsh-autosuggestions $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
 no-powerlevel:
 	sed -i 's#powerlevel10k/powerlevel10k#robbyrussell#' ~/.zshrc
 
 mac:
-	brew install neovim tmux stow
+	brew install neovim tmux stow fzf ripgrep
+	brew install linearmouse rectangle wine-stable
 
 fedora:
 	dnf update -y
